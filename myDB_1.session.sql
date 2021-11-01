@@ -26,5 +26,5 @@ UPDATE workers SET
 birthday = make_date(1987, EXTRACT(MONTH FROM birthday), EXTRACT(DAY FROM birthday)) WHERE id=4;
 
 
-
+-- пишет function make_date(integer, numeric, numeric) does not exist
 
