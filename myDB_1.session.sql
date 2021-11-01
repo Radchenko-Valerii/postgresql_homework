@@ -23,8 +23,17 @@ INSERT INTO workers (birthday, "name", salary_$) VALUES
 (DATE '1999-1-27', 'Vasya', 3000);
 
 UPDATE workers SET 
-birthday = make_date(1987, EXTRACT(MONTH FROM birthday), EXTRACT(DAY FROM birthday)) WHERE id=4;
+birthday = make_date(1987, CAST(EXTRACT(MONTH FROM birthday) as int), CAST (EXTRACT(DAY FROM birthday) as int)) WHERE id=4;
 
+UPDATE workers SET 
+salary_$ = 700 WHERE salary_$ = 500;
 
--- пишет function make_date(integer, numeric, numeric) does not exist
+UPDATE workers SET
+birthday = make_date(1999, CAST(EXTRACT(MONTH FROM birthday) as int), CAST (EXTRACT(DAY FROM birthday) as int)) WHERE
+id >= 2 and id <=5;
+
+UPDATE workers SET
+"name" = 'Zhenya', salary_$ = 900 WHERE
+"name" = 'Vasya';
+
 
