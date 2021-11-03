@@ -1,0 +1,29 @@
+--1--
+
+SELECT phones.brand || ' ' || phones.model as ppp, sum(phones_to_orders."quantity") as qua
+FROM phones_to_orders
+JOIN phones ON phones_to_orders."phoneId" = phones.id
+GROUP BY ppp
+ORDER BY qua DESC 
+LIMIT 1;
+
+--2--
+
+SELECT sum(price * phones_to_orders.quantity) as dolars, users."firstName" || ' ' || users."lastName" as fNlN
+FROM users
+JOIN orders ON orders."userId" = users.id
+JOIN phones_to_orders ON orders.id =  phones_to_orders."orderId"
+JOIN phones ON phones_to_orders."phoneId" = phones.id
+GROUP BY fNlN
+ORDER BY dolars DESC
+LIMIT 1;
+
+--3--
+
+SELECT users."firstName" || ' ' || users."lastName" as fNlN, phones.brand || ' ' || phones.model as tel, sum(phones_to_orders."quantity") as qua
+FROM users
+JOIN orders ON orders."userId" = users.id
+JOIN phones_to_orders ON orders.id =  phones_to_orders."orderId"
+JOIN phones ON phones_to_orders."phoneId" = phones.id
+GROUP BY fNlN, tel 
+ORDER BY fNlN;
